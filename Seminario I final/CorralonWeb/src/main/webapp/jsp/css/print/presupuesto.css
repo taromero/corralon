@@ -1,0 +1,12 @@
+.hideOnPrint{
+	display: none;
+}
+
+.showOnPrint[style]{
+	display: block !important;
+}
+.rounded-corner{
+	border-color: #600;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+}

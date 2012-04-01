@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<context:component-scan base-package="ar.com.seminario.corralon">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+<!-- 	<context:component-scan base-package="ar.com.seminario.corralon.dao.jpa.impl"/> -->
+	<context:component-scan base-package="ar.com.seminario.corralon.dao.jpa.datastore.impl"/>
+	<context:component-scan base-package="ar.com.seminario.corralon.common.dao.jpa.impl"/>
+<!-- 	<context:component-scan base-package="ar.com.seminario.corralon.dao.hibernate.impl"/> -->
+<!-- 	<context:component-scan base-package="ar.com.seminario.corralon.common.dao.hibernate.impl"/> -->
+	<context:annotation-config/>
+	
+<!-- 	Hibernate -->
+<!-- 	<import resource="/dataSource.xml" /> -->
+<!-- 	<import resource="/hibernate.xml" /> -->
+<!-- 	Fin Hibernate -->
+
+<!-- 	JPA -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="transactions-optional" />
+<!--         <property name="persistenceUnitName" value="MySQL" /> -->
+    </bean>
+<!--     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
+<!--         <property name="entityManagerFactory" ref="entityManagerFactory" /> -->
+<!--     </bean> -->
+
+<!-- 	<tx:annotation-driven transaction-manager="transactionManager"/> -->
+	
+<!-- 	Fin JPA -->
+	
+<!-- Para el manejo de excepciones por ajax, TIRA PROBLEMAS CON GAE -->
+<!-- 	<bean id="stringHttpMessageConverter" -->
+<!-- 	class="org.springframework.http.converter.StringHttpMessageConverter" /> -->
+	
+<!-- 	<bean id="jsonHttpMessageConverter"  -->
+<!-- 	class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" /> -->
+	
+<!-- 	<bean id="xstreamMarshaller" -->
+<!-- 	class="org.springframework.oxm.xstream.XStreamMarshaller"> -->
+<!-- 	<property name="autodetectAnnotations" value="true"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="marshallingHttpMessageConverter" class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"> -->
+<!-- 	<property name="marshaller" ref="xstreamMarshaller"/> -->
+<!-- 	<property name="unmarshaller" ref="xstreamMarshaller"/> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="methodHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver"> -->
+<!-- 		<property name="messageConverters"> -->
+<!-- 			<list> -->
+<!-- 				<ref bean="stringHttpMessageConverter"/> -->
+<!-- 				<ref bean="jsonHttpMessageConverter"/> -->
+<!-- 				<ref bean="marshallingHttpMessageConverter"/> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+<!-- Hasta aca, para el manejo de excepciones por ajax -->
+</beans>

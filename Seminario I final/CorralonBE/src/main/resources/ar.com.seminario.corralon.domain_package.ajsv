@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram style="hideGetSetDiagramStyle" version="1.7.4.v20110506-1155">
+        <class className="ar.com.seminario.corralon.domain.ItemOrdenCompra" project="CorralonBE" xLocation="5027" yLocation="697"/>
+        <class className="ar.com.seminario.corralon.domain.Madera" project="CorralonBE" xLocation="5582" yLocation="261"/>
+        <class className="ar.com.seminario.corralon.domain.OrdenCompra" project="CorralonBE" xLocation="4855" yLocation="1057"/>
+        <class className="ar.com.seminario.corralon.domain.Presupuesto" project="CorralonBE" xLocation="4478" yLocation="665"/>
+        <class className="ar.com.seminario.corralon.domain.Proveedor" project="CorralonBE" xLocation="3663" yLocation="1352"/>
+        <class className="ar.com.seminario.corralon.domain.ItemPresupuesto" project="CorralonBE" xLocation="3790" yLocation="702"/>
+        <class className="ar.com.seminario.corralon.domain.Cliente" project="CorralonBE" xLocation="4459" yLocation="197"/>
+        <class className="ar.com.seminario.corralon.domain.Sistema" project="CorralonBE" xLocation="4602" yLocation="1042"/>
+        <class className="ar.com.seminario.corralon.domain.Material" project="CorralonBE" xLocation="4064" yLocation="414"/>
+        <class className="ar.com.seminario.corralon.domain.MaterialProveedor" project="CorralonBE" xLocation="3467" yLocation="27"/>
+        <class className="ar.com.seminario.corralon.domain.MaterialConUnidad" project="CorralonBE" xLocation="4189" yLocation="1068"/>
+        <class className="ar.com.seminario.corralon.domain.MaterialSinUnidad" project="CorralonBE" xLocation="3379" yLocation="733"/>
+        <class className="ar.com.seminario.corralon.domain.Usuario" project="CorralonBE" xLocation="4994" yLocation="195"/>
+    </diagram>
+</ajsv>

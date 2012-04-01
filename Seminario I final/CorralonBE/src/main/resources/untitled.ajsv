@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)-->
+<ajsv>
+    <diagram style="defaultDiagramStyle" version="1.7.4.v20110506-1155">
+        <class className="ar.com.seminario.corralon.services.impl.PresupuestoServiceImpl" project="CorralonBE" xLocation="-223" yLocation="-634"/>
+        <class className="ar.com.seminario.corralon.services.impl.MaterialServiceImpl" project="CorralonBE" xLocation="395" yLocation="-168"/>
+    </diagram>
+</ajsv>
