@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ar.com.seminario.corralon.domain.Usuario;
+import ar.com.seminario.corralon.dtos.UsuarioDTO;
 import ar.com.seminario.corralon.exceptions.UsuarioInexistenteException;
 import ar.com.seminario.corralon.services.UsuarioService;
 
@@ -20,9 +21,10 @@ public class UsuarioControllerApi {
 	private UsuarioService usuarioService;
 	
 	@RequestMapping(value="/usuarios/{dni}", method=RequestMethod.GET)
-	public @ResponseBody Usuario getUsuarioByDni(@PathVariable String dni) throws NumberFormatException, UsuarioInexistenteException{
+	public @ResponseBody UsuarioDTO getUsuarioByDni(@PathVariable String dni) throws NumberFormatException, UsuarioInexistenteException{
 		Usuario usuario = usuarioService.findByDNI(Long.parseLong(dni));
-		return usuario;
+		UsuarioDTO usuarioDTO = new UsuarioDTO(usuario);
+		return usuarioDTO;
 	}
 	
 }

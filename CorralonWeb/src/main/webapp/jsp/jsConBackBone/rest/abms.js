@@ -18,6 +18,7 @@ function saveOrUpdateUsuario() {
 }
 
 function findUsuariobyDni(){
+	$( "#cargandoDialog" ).dialog('open');
 	$.ajax({
 		  type: 'GET',
 		  url: "rest/usuarios/" + $('#dniABMU').val(),
@@ -26,6 +27,7 @@ function findUsuariobyDni(){
 		  success: function(usuario){
 			  $('#nombreABMU').val(usuario.nombre);
 			  sessionStorage.setItem("usuario" + usuario.dni, JSON.stringify(usuario));
+			  $( "#cargandoDialog" ).dialog('close');
 		  },
 		});
 }

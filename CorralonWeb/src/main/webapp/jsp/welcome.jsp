@@ -24,6 +24,9 @@ var proveedoresList = [ ${proveedores} ];
 			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
 			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
 			}
+			
+			/*estilo para la progressbar*/
+			.ui-progressbar-value { background-image: url(images/pbar-ani.gif); }
 		</style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -61,7 +64,7 @@ var proveedoresList = [ ${proveedores} ];
 
 </head>
 <body>
-
+	<div id="cargandoDialog">Cargando</div>
 	<div id="tabs" style="height:1000px">
 		<ul class="hideOnPrint">
 			<li><a href="#tabs-1">Generar Presupuesto</a></li>

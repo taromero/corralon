@@ -3,6 +3,12 @@
 //	}; 
 
 	$(function(){
+		$( "#cargandoDialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode"
+		});
+		
 		//Genera la estructura de tabs
 		$('#tabs').tabs();
 		
