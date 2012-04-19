@@ -1,5 +1,6 @@
 package ar.com.seminario.corralon.services.impl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,6 @@ import ar.com.seminario.corralon.domain.Material;
 import ar.com.seminario.corralon.domain.MaterialConUnidad;
 import ar.com.seminario.corralon.domain.MaterialProveedor;
 import ar.com.seminario.corralon.domain.MaterialSinUnidad;
-import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.exceptions.MaderasNoEncontradasException;
 import ar.com.seminario.corralon.exceptions.StockInsuficienteException;
 import ar.com.seminario.corralon.services.MaterialService;
@@ -188,9 +188,9 @@ public class MaterialServiceImpl implements MaterialService{
 	}
 
 	@Override
-	public List<Madera> obtenerMaderasDeUsuarioEnSesion(Usuario user) {
+	public List<Madera> obtenerMaderasDeUsuarioEnSesion(List<Long> idsMaderasPresupuestandose) {
 		List<Madera> maderasPresupuestandose = new ArrayList<Madera>();
-		for(Long madId : user.getIdsMaderasPresupuestandose()){
+		for(Long madId : idsMaderasPresupuestandose){
 			Madera m = (Madera) this.findByID(madId);
 			maderasPresupuestandose.add(m);
 		}

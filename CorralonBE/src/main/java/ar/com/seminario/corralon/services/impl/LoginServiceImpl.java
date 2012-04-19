@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ar.com.seminario.corralon.dao.UsuarioDAO;
 import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.dtos.LoginDTO;
+import ar.com.seminario.corralon.dtos.UsuarioDTO;
 import ar.com.seminario.corralon.exceptions.UsuarioInexistenteException;
 import ar.com.seminario.corralon.services.LoginService;
 
@@ -20,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Usuario validateUser(LoginDTO loginDTO) throws UsuarioInexistenteException {
+	public UsuarioDTO validateUser(LoginDTO loginDTO) throws UsuarioInexistenteException {
 		Usuario usuario;
 		loginDTO.setValidado(false);
 		usuario = usuarioDAO.findByDNI(loginDTO.getAlias()); // El alias del login es el dni
@@ -30,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
 			}
 		}
 
-		return usuario;
+		return new UsuarioDTO(usuario);
 	}
 
 }

@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ar.com.seminario.corralon.domain.OrdenCompra;
 import ar.com.seminario.corralon.domain.Presupuesto;
-import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.dtos.PresupuestoDTO;
 import ar.com.seminario.corralon.exceptions.PresupuestosNoEncontradosException;
 import ar.com.seminario.corralon.exceptions.UsuarioInexistenteException;
@@ -50,7 +46,7 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/buscarPresupuestosAjax.htm")
-	public @ResponseBody List<Presupuesto> buscarPresupuestos(@RequestParam String fecha, @RequestParam String cliente, HttpServletResponse response) throws PresupuestosNoEncontradosException{
+	public @ResponseBody List<Presupuesto> buscarPresupuestos(@RequestParam String fecha, @RequestParam String cliente) throws PresupuestosNoEncontradosException{
 		Date f = null;
 		if(fecha != ""){
 			f = fechaService.generarFecha(fecha);
@@ -74,7 +70,7 @@ public class SearchController {
 	
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/confirmarPresupuestoAjax.htm")
-	public @ResponseBody void confirmarPresupuesto(@RequestParam String idPresupuesto, @ModelAttribute Usuario user) throws IOException {
+	public @ResponseBody void confirmarPresupuesto(@RequestParam String idPresupuesto) throws IOException {
 		Presupuesto presupuesto = presupuestoService.confirmarPresupuesto(Long.parseLong(idPresupuesto));
 	}
 	

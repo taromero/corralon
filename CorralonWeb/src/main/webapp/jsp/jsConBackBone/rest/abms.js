@@ -1,6 +1,7 @@
 function saveOrUpdateUsuario() {
 	$.ajax({
-		url : 'saveOrUpdateUsuario.htm',
+		type: 'PUT'
+		url : 'rest/usuarios',
 		data : ({
 			usuarioDto : generarUsuarioJSON()
 		}),

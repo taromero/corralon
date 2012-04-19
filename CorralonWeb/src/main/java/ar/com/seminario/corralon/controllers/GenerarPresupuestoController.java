@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ar.com.seminario.corralon.domain.Madera;
-import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.dtos.CorteMaderaDTO;
 import ar.com.seminario.corralon.dtos.MaderaDTO;
 import ar.com.seminario.corralon.dtos.PrecioUnidadDTO;
+import ar.com.seminario.corralon.dtos.UsuarioDTO;
 import ar.com.seminario.corralon.exceptions.MaderasNoEncontradasException;
 import ar.com.seminario.corralon.exceptions.PresupuestoSinItemsException;
 import ar.com.seminario.corralon.exceptions.StockInsuficienteException;
@@ -43,24 +43,15 @@ public class GenerarPresupuestoController {
 	/**
 	 * Guarda el presupuesto y elimina las maderas de la sesion. 
 	 * Si ocurre algun error devuelve el mensaje correspondiente.
-	 * @param items
-	 * @param dniCliente
-	 * @param dniUsuario
-	 * @param user
-	 * @return
-	 * @throws PresupuestoSinItemsException 
-	 * @throws StockInsuficienteException 
-	 * @throws UsuarioInexistenteException 
-	 * @throws NumberFormatException 
 	 */
 	@RequestMapping(value = "/savePresupuestoAjax.htm")
 	public @ResponseBody String savePresupuesto(@RequestParam("items") String items, @RequestParam("cliente") String dniCliente, 
-													@RequestParam("usuario") String dniUsuario, @ModelAttribute Usuario user) 
+													@RequestParam("usuario") String dniUsuario, @ModelAttribute UsuarioDTO user) 
 															throws NumberFormatException, UsuarioInexistenteException, StockInsuficienteException, PresupuestoSinItemsException {
 		JSONArray jsonItems = (JSONArray) JSONSerializer.toJSON(items);
 		List<String> materiales = new ArrayList<String>();
 		List<Integer> cantidades = new ArrayList<Integer>();
-		List<Madera> maderas = materialService.obtenerMaderasDeUsuarioEnSesion(user);
+		List<Madera> maderas = materialService.obtenerMaderasDeUsuarioEnSesion(user.getIdsMaderasPresupuestandose());
 		for (int i = 0; i < jsonItems.size(); i++) {
 			JSONObject jobj = (JSONObject) jsonItems.get(i);
 			materiales.add(jobj.getJSONObject("material").getString("descripcion"));
@@ -92,7 +83,7 @@ public class GenerarPresupuestoController {
 	public @ResponseBody CorteMaderaDTO cortarMaderaAjax(@RequestParam("desc") String desc, 
 										@RequestParam("cant") String cantidadCortesPedidos,@RequestParam("largoMadera") String largoMadera, 
 										@RequestParam("largoACortar") String largoACortar, @RequestParam("guardarSobrante") String guardarSobrante, 
-										@RequestParam("cepillar") String cepillar, @ModelAttribute Usuario user){
+										@RequestParam("cepillar") String cepillar, @ModelAttribute UsuarioDTO user){
 		Madera mad = (Madera) materialService.findByDescripcionYLargo(desc, Float.parseFloat(largoMadera));
 		Integer cantidadCortesPosibles = (int) Math.floor(mad.getLargo()/Float.parseFloat(largoACortar));
 		Integer cantidadCortesRealizados = 0;
@@ -110,7 +101,7 @@ public class GenerarPresupuestoController {
 	}
 	
 	@RequestMapping(value = "/cancelarCortesAjax.htm")
-	public @ResponseBody void cancelarCortesAjax(@ModelAttribute Usuario user){
+	public @ResponseBody void cancelarCortesAjax(@ModelAttribute UsuarioDTO user){
 		for(Long madId : user.getIdsMaderasPresupuestandose()){
 			Madera mad = (Madera) materialService.findByID(madId);
 			materialService.rearmarMadera(mad);
@@ -132,9 +123,9 @@ public class GenerarPresupuestoController {
 	
 	
 	@RequestMapping(value = "/cancelarCorteAjax.htm")
-	public @ResponseBody void cancelarCorteAjax(@ModelAttribute Usuario user, @RequestParam("desc") String desc, 
+	public @ResponseBody void cancelarCorteAjax(@ModelAttribute UsuarioDTO user, @RequestParam("desc") String desc, 
 													@RequestParam("largo") String largo, @RequestParam("idMadre") String idMadre){
-		List<Madera> maderasPresupuestandose = materialService.obtenerMaderasDeUsuarioEnSesion(user);
+		List<Madera> maderasPresupuestandose = materialService.obtenerMaderasDeUsuarioEnSesion(user.getIdsMaderasPresupuestandose());
 		for(Madera m : maderasPresupuestandose){
 			if(m.getDescripcion().equals(desc) && m.getLargo() == Float.parseFloat(largo) && m.getMaderaMadre().getId_material() == Long.parseLong(idMadre)){
 				user.getIdsMaderasPresupuestandose().remove(m.getId_material());//revisar

@@ -1,8 +1,5 @@
 package ar.com.seminario.corralon.controllers;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -23,7 +20,7 @@ public class ABMController {
 	private UsuarioService usuarioService;
 	
 	@RequestMapping("/saveOrUpdateUsuario.htm")
-	public @ResponseBody String saveOrUpdateUsuario(@RequestParam("usuarioDto") String usuarioJson, HttpServletRequest req, HttpSession session){
+	public @ResponseBody String saveOrUpdateUsuario(@RequestParam("usuarioDto") String usuarioJson){
 		JSONObject usuarioJsonAux = (JSONObject) JSONSerializer.toJSON(usuarioJson);
 		Usuario usuarioDto = new Usuario();
 		usuarioDto.setNombre(usuarioJsonAux.getString("nombre"));

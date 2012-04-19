@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ar.com.seminario.corralon.domain.Madera;
-import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.dtos.PrecioUnidadDTO;
+import ar.com.seminario.corralon.dtos.UsuarioDTO;
 import ar.com.seminario.corralon.exceptions.UsuarioInexistenteException;
 import ar.com.seminario.corralon.services.FechaService;
 import ar.com.seminario.corralon.services.MaterialService;
@@ -54,7 +54,7 @@ public class GenerarOrdenCompraController {
 	@RequestMapping(value = "/saveOrdenDeCompraAjax.htm")
 	public @ResponseBody String saveOrdenDeCompraAjax(@RequestParam("items") String items,@RequestParam("proveedor") String razonSocialProveedor, 
 									@RequestParam("usuario") String dniUsuario, @RequestParam("fechaEntrega") String fechaEntrega,
-										@RequestParam("formaPago") String formaPago, @ModelAttribute Usuario user) {
+										@RequestParam("formaPago") String formaPago, @ModelAttribute UsuarioDTO user) {
 		JSONArray jsonItems = (JSONArray) JSONSerializer.toJSON(items);
 		List<String> materiales = new ArrayList<String>();
 		List<Integer> cantidades = new ArrayList<Integer>();
@@ -75,7 +75,7 @@ public class GenerarOrdenCompraController {
 	}
 	
 	@RequestMapping(value = "/agregarMaderaASesion.htm")
-	public @ResponseBody void agregarMaderaASesion(@ModelAttribute Usuario user,@RequestParam("desc") String desc, 
+	public @ResponseBody void agregarMaderaASesion(@ModelAttribute UsuarioDTO user,@RequestParam("desc") String desc, 
 					@RequestParam("cant") String cantidad,@RequestParam("largo") String largo){
 		for(int i = 0; i<Integer.parseInt(cantidad); i++){
 			Madera mad = new Madera();
@@ -86,7 +86,7 @@ public class GenerarOrdenCompraController {
 	}
 	
 	@RequestMapping(value = "/quitarMaderaDeSesion.htm")
-	public @ResponseBody void quitarMaderaDeSesion(@ModelAttribute Usuario user,@RequestParam("desc") String desc){
+	public @ResponseBody void quitarMaderaDeSesion(@ModelAttribute UsuarioDTO user,@RequestParam("desc") String desc){
 		Madera maderaAQuitar = null;
 		for(Madera m : user.getMaderasParaOC()){
 			if(m.getDescripcion().equals(desc)){

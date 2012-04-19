@@ -92,7 +92,7 @@ public interface MaterialService extends GenericService<Material>{
 	
 	public String obtenerUnidadMatProv(String desc, String prov);
 	
-	public List<Madera> obtenerMaderasDeUsuarioEnSesion(Usuario user);
+	public List<Madera> obtenerMaderasDeUsuarioEnSesion(List<Long> idsMaderasPresupuestandose);
 	
 	public Double findPrecioMatProveedor(String prov, String desc);
 }

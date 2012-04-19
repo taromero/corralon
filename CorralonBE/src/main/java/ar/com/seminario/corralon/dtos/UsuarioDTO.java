@@ -1,5 +1,6 @@
 package ar.com.seminario.corralon.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.seminario.corralon.domain.Madera;
@@ -22,13 +23,14 @@ public class UsuarioDTO {
 	private List<Madera> maderasParaOC;
 
 	public UsuarioDTO() {
+		this.idsMaderasPresupuestandose = new ArrayList<Long>();
+		this.maderasParaOC = new ArrayList<Madera>();
 	}
 
 	public UsuarioDTO(Long id_usuario, String email, String nombre,
 			String apellido, Long dni, String clave, String rol,
 			String resourceOwner, String externalId, String calendarId,
-			String calendarIFrame, List<Long> idsMaderasPresupuestandose,
-			List<Madera> maderasParaOC) {
+			String calendarIFrame) {
 		super();
 		this.id_usuario = id_usuario;
 		this.email = email;
@@ -41,19 +43,33 @@ public class UsuarioDTO {
 		this.externalId = externalId;
 		this.calendarId = calendarId;
 		this.calendarIFrame = calendarIFrame;
-		this.idsMaderasPresupuestandose = idsMaderasPresupuestandose;
-		this.maderasParaOC = maderasParaOC;
+		this.idsMaderasPresupuestandose = new ArrayList<Long>();
+		this.maderasParaOC = new ArrayList<Madera>();
 	}
 
 	public UsuarioDTO(Usuario u) {
 		this(u.getId_usuario(), u.getEmail(), u.getNombre(), u.getApellido(), u
 				.getDni(), u.getClave(), u.getRol(), u.getResourceOwner(), u
-				.getExternalId(), u.getCalendarId(), u.getCalendarIFrame(), u
-				.getIdsMaderasPresupuestandose(), u.getMaderasParaOC());
+				.getExternalId(), u.getCalendarId(), u.getCalendarIFrame());
 	}
 
 	public List<Long> getIdsMaderasPresupuestandose() {
 		return idsMaderasPresupuestandose;
+	}
+	
+	public Usuario toModelEntity(){
+		Usuario u = new Usuario();
+		u.setApellido(this.apellido);
+		u.setClave(this.clave);
+		u.setCalendarId(this.calendarId);
+		u.setCalendarIFrame(this.calendarIFrame);
+		u.setDni(this.dni);
+		u.setEmail(this.email);
+		u.setExternalId(this.externalId);
+		u.setNombre(this.nombre);
+		u.setResourceOwner(this.resourceOwner);	
+		u.setRol(this.rol);
+		return u;
 	}
 
 	public void setIdsMaderasPresupuestandose(

@@ -1,14 +1,11 @@
 package ar.com.seminario.corralon.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class Usuario implements Serializable{
@@ -35,13 +32,8 @@ public class Usuario implements Serializable{
 	private String calendarId;
 	private String calendarIFrame;
 	
-	private List<Long> idsMaderasPresupuestandose;
-	private List<Madera> maderasParaOC;
-	
 	public Usuario() {
 		super();
-		this.idsMaderasPresupuestandose = new ArrayList<Long>();
-		this.maderasParaOC = new ArrayList<Madera>();
 	}
 	
 	public Usuario(Usuario user){
@@ -50,25 +42,6 @@ public class Usuario implements Serializable{
 		this.dni = user.getDni();
 		this.clave = user.getClave();
 		this.rol = user.getRol();
-	}
-	
-	@Transient
-	public List<Long> getIdsMaderasPresupuestandose() {
-		return idsMaderasPresupuestandose;
-	}
-
-	public void setIdsMaderasPresupuestandose(
-			List<Long> idsMaderasPresupuestandose) {
-		this.idsMaderasPresupuestandose = idsMaderasPresupuestandose;
-	}
-	
-	@Transient
-	public List<Madera> getMaderasParaOC() {
-		return maderasParaOC;
-	}
-
-	public void setMaderasParaOC(List<Madera> maderasParaOC) {
-		this.maderasParaOC = maderasParaOC;
 	}
 
 	@Id

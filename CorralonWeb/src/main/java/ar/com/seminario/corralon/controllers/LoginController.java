@@ -20,6 +20,7 @@ import ar.com.seminario.corralon.domain.MaterialConUnidad;
 import ar.com.seminario.corralon.domain.Presupuesto;
 import ar.com.seminario.corralon.domain.Usuario;
 import ar.com.seminario.corralon.dtos.LoginDTO;
+import ar.com.seminario.corralon.dtos.UsuarioDTO;
 import ar.com.seminario.corralon.exceptions.UsuarioInexistenteException;
 import ar.com.seminario.corralon.services.ClienteService;
 import ar.com.seminario.corralon.services.LoginService;
@@ -67,8 +68,8 @@ public class LoginController{
 		mav.addObject("dniUsuario", loginDto.getAlias());
 		
 		try {
-			Usuario usuario = loginService.validateUser(loginDto);
-			modelMap.addAttribute("usuario", usuario);
+			UsuarioDTO usuarioDTO = loginService.validateUser(loginDto);
+			modelMap.addAttribute("usuario", usuarioDTO);
 		} catch (UsuarioInexistenteException e) {
 			error =  e.getErrorMessage();
 		}
